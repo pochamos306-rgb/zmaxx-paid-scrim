@@ -43,6 +43,7 @@ window.login = function () {
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       alert("Login Successful");
+      localStorage.setItem("employeeName", email);
       window.location.href = "dashboard.html";
     })
     .catch((error) => {
