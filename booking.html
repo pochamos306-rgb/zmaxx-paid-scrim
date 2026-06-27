@@ -59,6 +59,13 @@ const auth = getAuth(app);
 const db = getDatabase(app);
 
 console.log("Firebase Connected");
+const employee = localStorage.getItem("employeeName");
+
+if (employee) {
+    document.getElementById("employeeName").innerText = employee;
+} else {
+    document.getElementById("employeeName").innerText = "Not Logged In";
+}
 document.getElementById("saveBooking").onclick = function () {
 
 const booking = {
