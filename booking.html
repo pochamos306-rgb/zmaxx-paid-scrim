@@ -60,7 +60,19 @@ const db = getDatabase(app);
 
 console.log("Firebase Connected");
 const employee = localStorage.getItem("employeeName");
+let displayName = employee;
 
+switch (employee) {
+  case "ayan@zmaxx.com":
+    displayName = "MD AYAN";
+    break;
+
+  case "rahul@zmaxx.com":
+    displayName = "RAHUL";
+    break;
+}
+
+document.getElementById("employeeName").innerText = displayName;
 let displayName = employee;
 
 if (employee === "ayan@zmaxx.com") {
