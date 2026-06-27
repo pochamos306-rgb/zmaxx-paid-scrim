@@ -20,20 +20,35 @@ style="padding:12px 30px;background:red;color:white;border:none;border-radius:10
 Login
 </button>
 
-<script>
-function login(){
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-let email=document.getElementById("email").value;
-let password=document.getElementById("password").value;
+const firebaseConfig = {
+  apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
+  authDomain: "z-maxx-paid-scrim.firebaseapp.com",
+  projectId: "z-maxx-paid-scrim",
+  storageBucket: "z-maxx-paid-scrim.firebasestorage.app",
+  messagingSenderId: "283601239964",
+  appId: "1:283601239964:web:0811f805c817fa84209259"
+};
 
-if(email=="admin@zmaxx.com" && password=="12345"){
-alert("Login Successful");
-window.location.href="dashboard.html";
-}else{
-alert("Wrong Email or Password");
-}
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-}
+window.login = function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      alert("Login Successful");
+      window.location.href = "dashboard.html";
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+};
 </script>
 
 </body>
