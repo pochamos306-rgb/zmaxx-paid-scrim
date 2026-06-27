@@ -9,10 +9,10 @@
 
 <h1>🔐 Admin Login</h1>
 
-<input id="user" type="text" placeholder="Username"
+<input id="email" type="email" placeholder="Email"
 style="padding:12px;width:250px;margin:10px;"><br>
 
-<input id="pass" type="password" placeholder="Password"
+<input id="password" type="password" placeholder="Password"
 style="padding:12px;width:250px;margin:10px;"><br>
 
 <button onclick="login()"
@@ -23,14 +23,14 @@ Login
 <script>
 function login(){
 
-var username=document.getElementById("user").value;
-var password=document.getElementById("pass").value;
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
 
-if(username=="admin" && password=="12345"){
+if(email=="admin@zmaxx.com" && password=="12345"){
 alert("Login Successful");
 window.location.href="dashboard.html";
 }else{
-alert("Wrong Username or Password");
+alert("Wrong Email or Password");
 }
 
 }
