@@ -65,7 +65,7 @@ document.getElementById("employeeName").innerText = employee || "Not Logged In";
 document.getElementById("saveBooking").onclick = function () {
 
 const booking = {
-  employee: document.getElementById("employeeName").innerText,
+  employee: employee,
   teamName: document.getElementById("teamName").value,
   bookingDate: document.getElementById("bookingDate").value,
   slotTime: document.getElementById("slotTime").value,
