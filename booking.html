@@ -60,15 +60,7 @@ const db = getDatabase(app);
 
 console.log("Firebase Connected");
 const employee = localStorage.getItem("employeeName");
-let displayName = employee;
-
-if (employee === "ayan@zmaxx.com") {
-    displayName = "MD AYAN";
-} else if (employee === "rahul@zmaxx.com") {
-    displayName = "RAHUL";
-}
-
-document.getElementById("employeeName").innerText = displayName || "Not Logged In";
+document.getElementById("employeeName").innerText = employee || "Not Logged In";
 document.getElementById("saveBooking").onclick = function () {
 
 const booking = {
