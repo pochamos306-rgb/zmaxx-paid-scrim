@@ -1,1 +1,1 @@
-# zmaxx-paid-scrim
+# z-maxx-paid-scrim
