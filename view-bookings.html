@@ -1,0 +1,155 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Bookings</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#111;
+    color:white;
+}
+
+header{
+    background:#222;
+    padding:15px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #444;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#00b894;
+}
+
+tr:nth-child(even){
+    background:#1b1b1b;
+}
+
+button{
+    background:red;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.back{
+    display:inline-block;
+    margin:15px;
+    padding:10px 18px;
+    background:#0984e3;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>📋 All Bookings</header>
+
+<a href="dashboard.html" class="back">⬅ Dashboard</a>
+
+<table>
+<thead>
+<tr>
+<th>Employee</th>
+<th>Team</th>
+<th>Date</th>
+<th>Time</th>
+<th>Fee</th>
+<th>Status</th>
+<th>Payment</th>
+<th>UTR</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="bookingTable"></tbody>
+
+</table>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
+authDomain:"z-maxx-paid-scrim.firebaseapp.com",
+databaseURL:"https://z-maxx-paid-scrim-default-rtdb.firebaseio.com",
+projectId:"z-maxx-paid-scrim",
+storageBucket:"z-maxx-paid-scrim.firebasestorage.app",
+messagingSenderId:"283601239964",
+appId:"1:283601239964:web:0811f805c817fa84209259"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+
+const table=document.getElementById("bookingTable");
+
+onValue(ref(db,"bookings"),(snapshot)=>{
+
+let html="";
+
+snapshot.forEach((item)=>{
+
+const key=item.key;
+const b=item.val();
+
+html+=`
+<tr>
+<td>${b.employee}</td>
+<td>${b.teamName}</td>
+<td>${b.bookingDate}</td>
+<td>${b.slotTime}</td>
+<td>₹${b.entryFee}</td>
+<td>${b.status}</td>
+<td>${b.paymentMethod}</td>
+<td>${b.utr}</td>
+<td><button onclick="deleteBooking('${key}')">Delete</button></td>
+</tr>
+`;
+
+});
+
+table.innerHTML=html;
+
+});
+
+window.deleteBooking=function(id){
+
+if(confirm("Delete this booking?")){
+
+remove(ref(db,"bookings/"+id));
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
+
