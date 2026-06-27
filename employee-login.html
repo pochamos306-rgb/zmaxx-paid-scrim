@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Login</title>
+
+<style>
+body{
+background:#111;
+color:white;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+.box{
+background:#222;
+padding:25px;
+border-radius:10px;
+width:300px;
+text-align:center;
+}
+input{
+width:90%;
+padding:10px;
+margin:10px 0;
+border:none;
+border-radius:5px;
+}
+button{
+width:100%;
+padding:12px;
+background:#00b894;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Employee Login</h2>
+
+<input type="email" id="email" placeholder="Employee Email">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
+  authDomain: "z-maxx-paid-scrim.firebaseapp.com",
+  databaseURL: "https://z-maxx-paid-scrim-default-rtdb.firebaseio.com",
+  projectId: "z-maxx-paid-scrim",
+  storageBucket: "z-maxx-paid-scrim.firebasestorage.app",
+  messagingSenderId: "283601239964",
+  appId: "1:283601239964:web:0811f805c817fa84209259"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function(){
+
+const email=document.getElementById("email").value;
+const password=document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth,email,password)
+.then(()=>{
+
+localStorage.setItem("employeeName",email);
+
+alert("Employee Login Successful");
+
+window.location.href="booking.html";
+
+})
+.catch((error)=>{
+alert(error.message);
+});
+
+}
+
+</script>
+
+</body>
+</html>
