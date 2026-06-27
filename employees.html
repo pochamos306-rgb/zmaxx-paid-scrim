@@ -64,16 +64,19 @@ const db = getDatabase(app);
 window.saveEmployee = function(){
 
 let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
 let pass=document.getElementById("pass").value;
 
 push(ref(db,"employees"),{
 name:name,
+email:email,
 password:pass
 });
 
 alert("Employee Saved");
 
 document.getElementById("name").value="";
+document.getElementById("email").value="";
 document.getElementById("pass").value="";
 }
 
