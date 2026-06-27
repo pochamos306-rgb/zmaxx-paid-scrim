@@ -42,10 +42,18 @@ window.login = function () {
 
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      alert("Login Successful");
-      localStorage.setItem("employeeName", email);
-      window.location.href = "dashboard.html";
-    })
+
+    alert("Login Successful");
+
+    localStorage.setItem("employeeName", email);
+
+    if (email === "admin@zmaxx.com") {
+        window.location.href = "dashboard.html";
+    } else {
+        window.location.href = "booking.html";
+    }
+
+})
     .catch((error) => {
       alert(error.message);
     });
