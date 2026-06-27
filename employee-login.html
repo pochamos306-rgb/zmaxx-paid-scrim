@@ -80,7 +80,15 @@ const password=document.getElementById("password").value;
 signInWithEmailAndPassword(auth,email,password)
 .then(()=>{
 
+if(email==="ayan@zmaxx.com"){
+localStorage.setItem("employeeName","MD AYAN");
+}
+else if(email==="rahul@zmaxx.com"){
+localStorage.setItem("employeeName","RAHUL");
+}
+else{
 localStorage.setItem("employeeName",email);
+}
 
 alert("Employee Login Successful");
 
