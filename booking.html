@@ -38,5 +38,28 @@
 <input type="text" id="utr" placeholder="UTR / Transaction ID"><br><br>
 
 <button id="saveBooking">Save Booking</button>
+ <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
+  authDomain: "z-maxx-paid-scrim.firebaseapp.com",
+  databaseURL: "https://z-maxx-paid-scrim-default-rtdb.firebaseio.com",
+  projectId: "z-maxx-paid-scrim",
+  storageBucket: "z-maxx-paid-scrim.firebasestorage.app",
+  messagingSenderId: "283601239964",
+  appId: "1:283601239964:web:0811f805c817fa84209259"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+console.log("Firebase Connected");
+
+ </script> 
 </body>
 </html>
