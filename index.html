@@ -4,24 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Z-MAXX PAID SCRIM</title>
-</head>
 
-<body style="font-family:Arial;background:#111;color:white;text-align:center;padding:40px;">
+<style>
+body{
+    margin:0;
+    padding:0;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    background:#222;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    width:320px;
+    box-shadow:0 0 15px rgba(0,0,0,.5);
+}
+
+h1{
+    color:#00ff99;
+    margin-bottom:10px;
+}
+
+p{
+    color:#ccc;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.admin{
+    background:#e74c3c;
+}
+
+.employee{
+    background:#27ae60;
+}
+
+button:hover{
+    opacity:0.9;
+}
+</style>
+
+</head>
+<body>
+
+<div class="box">
 
 <h1>🔥 Z-MAXX PAID SCRIM 🔥</h1>
 
-<p>Welcome to Z-MAXX Paid Scrim</p>
+<p>Select Login Type</p>
 
-<p>Website is under development...</p>
-
-<button onclick="window.location.href='admin.html'" style="padding:12px 25px;background:red;color:white;border:none;border-radius:10px;">
-Login
+<button class="admin" onclick="window.location.href='admin.html'">
+🔐 Admin Login
 </button>
+
+<button class="employee" onclick="window.location.href='employee-login.html'">
+👤 Employee Login
+</button>
+
+</div>
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo"
+  apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
   authDomain: "z-maxx-paid-scrim.firebaseapp.com",
   databaseURL: "https://z-maxx-paid-scrim-default-rtdb.firebaseio.com",
   projectId: "z-maxx-paid-scrim",
@@ -30,7 +93,8 @@ const firebaseConfig = {
   appId: "1:283601239964:web:0811f805c817fa84209259"
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 </script>
+
 </body>
 </html>
