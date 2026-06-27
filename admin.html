@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="background:#111;color:white;font-family:Arial;text-align:center;padding-top:80px;">
+
+<h1>🔐 Admin Login</h1>
+
+<input id="user" type="text" placeholder="Username"
+style="padding:12px;width:250px;margin:10px;"><br>
+
+<input id="pass" type="password" placeholder="Password"
+style="padding:12px;width:250px;margin:10px;"><br>
+
+<button onclick="login()"
+style="padding:12px 30px;background:red;color:white;border:none;border-radius:10px;">
+Login
+</button>
+
+<script>
+function login(){
+
+var username=document.getElementById("user").value;
+var password=document.getElementById("pass").value;
+
+if(username=="admin" && password=="12345"){
+alert("Login Successful");
+window.location.href="dashboard.html";
+}else{
+alert("Wrong Username or Password");
+}
+
+}
+</script>
+
+</body>
+</html>
