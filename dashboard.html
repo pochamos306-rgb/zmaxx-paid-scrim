@@ -10,6 +10,7 @@
 <h1>🎮 Admin Dashboard</h1>
 
 <h3>Welcome Admin!</h3>
+<h2>Total Bookings: <span id="totalBookings">0</span></h2>
 <br>
 
 <button onclick="location.href='bookings.html'"
@@ -26,5 +27,27 @@ Employees
 Commission
 </button>
 <script type="module" src="firebase.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
+  authDomain: "z-maxx-paid-scrim.firebaseapp.com",
+  databaseURL: "https://z-maxx-paid-scrim-default-rtdb.firebaseio.com",
+  projectId: "z-maxx-paid-scrim",
+  storageBucket: "z-maxx-paid-scrim.firebasestorage.app",
+  messagingSenderId: "283601239964",
+  appId: "1:283601239964:web:0811f805c817fa84209259"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+onValue(ref(db, "bookings"), (snapshot) => {
+    document.getElementById("totalBookings").innerText =
+        snapshot.exists() ? snapshot.size : 0;
+});
+</script>
 </body>
 </html>
