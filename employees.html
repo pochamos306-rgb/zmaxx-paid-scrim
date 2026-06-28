@@ -45,7 +45,8 @@ import {
 getDatabase,
 ref,
 push,
-onValue
+onValue,
+update
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import {
 getAuth,
@@ -69,21 +70,22 @@ window.saveEmployee = function(){
 let name=document.getElementById("name").value;
 let email=document.getElementById("email").value;
 let pass=document.getElementById("pass").value;
-
+let commission=document.getElementById("commission").value;
 createUserWithEmailAndPassword(auth, email, pass)
 .then(() => {
 
     push(ref(db,"employees"),{
-        name: name,
-        email: email
-    });
+    name: name,
+    email: email,
+    commission: Number(commission)
+});
 
     alert("Employee Saved");
 
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("pass").value = "";
-
+document.getElementById("commission").value = "";
 })
 .catch((error) => {
     alert(error.message);
@@ -101,7 +103,12 @@ let emp=data.val();
 html+=`
 <div class="employee">
 <b>${emp.name}</b><br>
-${emp.email}
+📧 ${emp.email}<br>
+💰 Commission: ${emp.commission || 0}%<br><br>
+
+<button onclick="editCommission('${data.key}', ${emp.commission || 0})">
+Edit Commission
+</button>
 </div>
 `;
 
@@ -110,21 +117,50 @@ ${emp.email}
 document.getElementById("list").innerHTML=html;
 
 });
+window.editCommission = function(id, oldCommission){
+
+let newCommission = prompt("Enter New Commission %", oldCommission);
+
+if(newCommission==null) return;
+
+// Agle step me Save ka code add karenge
+
+update(ref(db, "employees/" + id), {
+    commission: Number(newCommission)
+})
+.then(() => {
+    alert("Commission Updated");
+})
+.catch((error) => {
+    alert(error.message);
+});
+
+}
 </script>
 
 </head>
 
+
 <body>
 
-<h2>👨 Employees</h2>
+<h2>👨 Employee Management</h2>
 
 <input id="name" placeholder="Employee Name">
-<input id="email" placeholder="Employee Email">
-<input id="pass" placeholder="Password">
+
+<input id="email" type="email" placeholder="Employee Email">
+
+<input id="pass" type="password" placeholder="Password">
+
+<input id="commission" type="number" placeholder="Commission %">
 
 <button onclick="saveEmployee()">Save Employee</button>
+
+<hr>
+
+<h2>Employee List</h2>
 
 <div id="list"></div>
 
 </body>
+
 </html>
