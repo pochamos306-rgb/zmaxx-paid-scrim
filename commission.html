@@ -61,10 +61,16 @@ employees[booking.employee].amount += Number(booking.entryFee || 0);
 let html = "";
 
 for (let name in employees) {
+
+    let total = employees[name].amount;
+    let commission = total * 0.10; // 10% Commission
+
     html += `
     <div style="background:#222;padding:15px;margin:10px;border-radius:8px;">
         <h3>${name}</h3>
-        <p>Total Bookings: ${employees[name]}</p>
+        <p>Total Bookings: ${employees[name].bookings}</p>
+        <p>Total Collection: ₹${total}</p>
+        <p><b>Commission: ₹${commission}</b></p>
     </div>
     `;
 }
