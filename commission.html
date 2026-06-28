@@ -40,11 +40,32 @@ const list = document.getElementById("commissionList");
 
 onValue(ref(db,"bookings"),(snapshot)=>{
 
-let totalBookings = snapshot.exists() ? snapshot.size : 0;
+let employees = {};
 
-list.innerHTML = `
-<h2>Total Bookings : ${totalBookings}</h2>
-`;
+snapshot.forEach((item) => {
+
+    let booking = item.val();
+
+    if (!employees[booking.employee]) {
+        employees[booking.employee] = 0;
+    }
+
+    employees[booking.employee]++;
+
+});
+
+let html = "";
+
+for (let name in employees) {
+    html += `
+    <div style="background:#222;padding:15px;margin:10px;border-radius:8px;">
+        <h3>${name}</h3>
+        <p>Total Bookings: ${employees[name]}</p>
+    </div>
+    `;
+}
+
+list.innerHTML = html;
 
 });
 
