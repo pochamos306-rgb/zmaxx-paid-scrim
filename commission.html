@@ -47,10 +47,14 @@ snapshot.forEach((item) => {
     let booking = item.val();
 
     if (!employees[booking.employee]) {
-        employees[booking.employee] = 0;
-    }
+    employees[booking.employee] = {
+        bookings: 0,
+        amount: 0
+    };
+}
 
-    employees[booking.employee]++;
+employees[booking.employee].bookings++;
+employees[booking.employee].amount += Number(booking.entryFee || 0);
 
 });
 
