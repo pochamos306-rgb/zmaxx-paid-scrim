@@ -43,15 +43,14 @@ window.login = function () {
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
 
-    alert("Login Successful");
+  if (email !== "admin@zmaxx.com") {
+    alert("Access Denied! Only Admin can login here.");
+    return;
+}
 
-    localStorage.setItem("employeeName", email);
-
-    if (email === "admin@zmaxx.com") {
-        window.location.href = "dashboard.html";
-    } else {
-        window.location.href = "booking.html";
-    }
+alert("Admin Login Successful");
+localStorage.setItem("employeeName", "Admin");
+window.location.href = "dashboard.html";
 
 })
     .catch((error) => {
