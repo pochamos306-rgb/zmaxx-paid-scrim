@@ -57,7 +57,7 @@ font-size:16px;
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEL_6w7HB43up4n4efgZo43zSHIMpVSTo",
@@ -79,7 +79,11 @@ const password=document.getElementById("password").value;
 
 signInWithEmailAndPassword(auth,email,password)
 .then(()=>{
-
+if (email === "admin@zmaxx.com") {
+    alert("Admin is not allowed here.");
+    signOut(auth);
+    return;
+}
 if(email==="ayan@zmaxx.com"){
 localStorage.setItem("employeeName","MD AYAN");
 }
