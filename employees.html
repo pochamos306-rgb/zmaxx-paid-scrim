@@ -88,7 +88,7 @@ createUserWithEmailAndPassword(auth, email, pass)
 .catch((error) => {
     alert(error.message);
 });
-
+};
 
 onValue(ref(db,"employees"),snapshot=>{
 
@@ -101,7 +101,7 @@ let emp=data.val();
 html+=`
 <div class="employee">
 <b>${emp.name}</b><br>
-${emp.password}
+${emp.email}
 </div>
 `;
 
